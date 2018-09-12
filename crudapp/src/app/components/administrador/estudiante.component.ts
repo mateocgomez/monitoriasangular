@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Estudiante } from '../../interfaces/estudiante.interface';
 import { AdministradorService } from '../../services/administrador.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-estudiante',
@@ -20,7 +21,8 @@ export class EstudianteComponent implements OnInit {
   };
 
 
-  constructor(private _administradorService: AdministradorService) { }
+  constructor(private _administradorService: AdministradorService,
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -28,7 +30,9 @@ export class EstudianteComponent implements OnInit {
   guardar() {
     console.log(this.estudiante);
     this._administradorService.nuevoEstudiante(this.estudiante)
-          .subscribe ( data => { } );
+          .subscribe ( data => {
+            this.router.navigate(['/estudiante', data.name]);
+          }, error => console.error(error));
   }
 
 }
