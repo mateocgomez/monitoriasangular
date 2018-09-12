@@ -3,9 +3,11 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { APP_ROUTING } from './app.routes';
+
 import { AppComponent } from './app.component';
 import { AdministradorComponent } from './components/administrador/administrador.component';
 import { EstudianteComponent } from './components/administrador/estudiante.component';
+import { AdministradorService } from './services/administrador.service';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { EstudianteComponent } from './components/administrador/estudiante.compo
     HttpModule,
     APP_ROUTING
   ],
-  providers: [],
+  providers: [
+    AdministradorService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
