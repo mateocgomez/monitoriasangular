@@ -10,8 +10,23 @@ import { map } from 'rxjs/operators';
 export class AdministradorService {
 
   estudianteUrl = 'https://monitoriasapp.firebaseio.com/Administrador.json';
+  actualizarUrl = 'https://monitoriasapp.firebaseio.com/Administrador/';
 
   constructor( private http: Http ) { }
+actualizarEstudiante (estudiante: Estudiante, key$: string){
+  const body = JSON.stringify(estudiante);
+  const headers = new Headers({
+    'Content-Type': 'application/json'
+  });
+
+  const url = `${this.actualizarUrl}/${key$}.json`;
+      return this.http.put ( url, body, { headers } )
+                .pipe(map(res => {
+                    console.log(res.json());
+                    return res.json();
+                }));
+}
+
     nuevoEstudiante( estudiante: Estudiante ) {
 
       const body = JSON.stringify(estudiante);
@@ -24,5 +39,4 @@ export class AdministradorService {
                     return res.json();
 
                 }));
-
     }}
