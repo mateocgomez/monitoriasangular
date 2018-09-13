@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdministradorService } from '../../services/administrador.service';
 
 @Component({
   selector: 'app-administrador',
@@ -7,9 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdministradorComponent implements OnInit {
 
-  constructor() { }
+  administrador: any[] = [];
+
+  constructor( private _AdministradorService: AdministradorService ) {
+    this._AdministradorService.getAdministrador()
+        .subscribe( data => {
+          this.administrador = data;
+        });
+  }
 
   ngOnInit() {
+  }
+
+  borrarEstudiante(key$: string) {
+    this._AdministradorService.borrarEstudiante(key$)
+    .subscribe( respuesta => {
+      if (respuesta) {
+        console.error(respuesta);
+      } else {
+        delete this.administrador[key$];
+      }
+    });
   }
 
 }

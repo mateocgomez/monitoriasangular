@@ -8,12 +8,14 @@ import { AppComponent } from './app.component';
 import { AdministradorComponent } from './components/administrador/administrador.component';
 import { EstudianteComponent } from './components/administrador/estudiante.component';
 import { AdministradorService } from './services/administrador.service';
+import { KeysPipe } from './pipes/keys.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     AdministradorComponent,
-    EstudianteComponent
+    EstudianteComponent,
+    KeysPipe
   ],
   imports: [
     BrowserModule,

@@ -28,7 +28,9 @@ export class EstudianteComponent implements OnInit {
               private route: ActivatedRoute) {
                 this.route.params
                   .subscribe( parametros =>
-                    this.id = parametros['id'] );
+                    this.id = parametros['id'];
+                    if (this.id !== 'nuevo') {
+                      this._administradorService.getEstudiante(this.id).subscribe(estudiante => this.estudiante = estudiante); } )
                }
 
   ngOnInit() {
@@ -52,6 +54,13 @@ export class EstudianteComponent implements OnInit {
     }
 
 
+  }
+
+  agregarNuevo(forma: NgForm) {
+  this.router.navigate(['/estudiante', 'nuevo']);
+
+  forma.reset({
+  });
   }
 
 }

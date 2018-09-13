@@ -18,13 +18,28 @@ actualizarEstudiante (estudiante: Estudiante, key$: string){
   const headers = new Headers({
     'Content-Type': 'application/json'
   });
-
   const url = `${this.actualizarUrl}/${key$}.json`;
       return this.http.put ( url, body, { headers } )
                 .pipe(map(res => {
                     console.log(res.json());
                     return res.json();
                 }));
+}
+
+getEstudiante (key$: string) {
+  const url = `${this.actualizarUrl}/${key$}.json`;
+  return this.http.get (url )
+  .pipe(map(res => res.json()));
+}
+
+getAdministrador( ) {
+  return this.http.get ( this.estudianteUrl )
+  .pipe(map(res => res.json()));
+}
+
+borrarEstudiante(key$: string) {
+  const url = `${this.actualizarUrl}/${key$}.json`;
+  return this.http.delete(url).pipe(map(res => res.json()));
 }
 
     nuevoEstudiante( estudiante: Estudiante ) {
