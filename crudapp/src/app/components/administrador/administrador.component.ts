@@ -9,11 +9,13 @@ import { AdministradorService } from '../../services/administrador.service';
 export class AdministradorComponent implements OnInit {
 
   administrador: any[] = [];
+  loading: boolean = true;
 
   constructor( private _AdministradorService: AdministradorService ) {
     this._AdministradorService.getAdministrador()
         .subscribe( data => {
           this.administrador = data;
+          this.loading = false;
         });
   }
 
